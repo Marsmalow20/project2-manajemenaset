@@ -83,7 +83,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="assets/dosen_listmhs.php" class="btn">
+                    <a href="list_pegawai.php" class="btn">
                         <div class="card">
                             <img src="../../assets/img/Picture6.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
