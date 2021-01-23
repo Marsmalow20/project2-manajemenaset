@@ -73,7 +73,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="assets/dosen.php" class="btn">
+                    <a href="list_aset.php" class="btn">
                         <div class="card">
                             <img src="../../assets/img/Picture5.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
