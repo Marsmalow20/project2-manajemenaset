@@ -4,6 +4,9 @@
     if (!isset($_SESSION['login'])) {
         header('Location: ../../index.html');
     }
+
+    $sql = "SELECT username, nama FROM user";
+    $q = mysqli_query($con, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -55,35 +58,33 @@
     </nav>
 
     <div class="container">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="col text-center mt-4">
+            <h3>Pegawai</h3>
+        </div>
+        <a class="btn btn-success my-2" href="input_pegawai.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $i = 1; foreach ($q as $data): ?>
+                <tr>
+                    <th scope="row"><?= $i++ ?></th>
+                    <td><?= $data['username'] ?></td>
+                    <td><?= $data['nama'] ?></td>
+                    <td>
+                        <a href="#"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
+                        <a href="#"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
     <script src="../../js/all.js"></script>
