@@ -58,18 +58,18 @@
         <div class="col text-center my-4">
             <h3>Input Pegawai</h3>
         </div>
-        <form method="POST" action="../../assets/config/tambah_pegawai.php">
+        <form method="POST" action="../../assets/config/admin/tambah_pegawai.php">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control bg-light" id="name" aria-describedby="emailHelp" autocomplete="off">
+                <input type="text" class="form-control bg-light" id="name" name="nama" aria-describedby="emailHelp" autocomplete="off">
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control bg-light" id="username" aria-describedby="emailHelp" autocomplete="off">
+                <input type="text" class="form-control bg-light" id="username" name="username" aria-describedby="emailHelp" autocomplete="off">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control bg-light" id="password">
+                <input type="password" class="form-control bg-light" id="password" name="password">
             </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>
