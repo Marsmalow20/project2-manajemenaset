@@ -58,7 +58,7 @@
         <div class="col text-center my-4">
             <h3>Input Pegawai</h3>
         </div>
-        <form>
+        <form method="POST" action="../../assets/config/tambah_pegawai.php">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control bg-light" id="name" aria-describedby="emailHelp" autocomplete="off">
