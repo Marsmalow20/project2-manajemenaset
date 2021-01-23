@@ -79,7 +79,7 @@
                     <td><?= $data['nama'] ?></td>
                     <td>
                         <a href="#"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="#"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
+                        <a href="../../assets/config/admin/hapus_pegawai.php?username=<?= $data['username'] ?>" onclick="return confirm('Hapus Username = <?= $data['username'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
