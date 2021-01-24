@@ -5,7 +5,9 @@
         header('Location: ../../index.html');
     }
 
-    $sql = "SELECT username, nama FROM user";
+    $id_aset = $_GET['id_aset'];
+
+    $sql = "SELECT * FROM aset WHERE id_aset = '$id_aset'";
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -58,33 +60,40 @@
     </nav>
 
     <div class="container">
-        <div class="col text-center mt-4">
-            <h3>Pegawai</h3>
+        <div class="col text-center my-4">
+            <h3> Detail Aset</h3>
         </div>
-        <a class="btn btn-success my-2" href="input_pegawai.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach ($q as $data): ?>
-                <tr>
-                    <th scope="row"><?= $i++ ?></th>
-                    <td><?= $data['username'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td>
-                        <a href="edit_pegawai.php?username=<?= $data['username'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/admin/hapus_pegawai.php?username=<?= $data['username'] ?>" onclick="return confirm('Hapus Username = <?= $data['username'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+
+        <?php $i = 1; foreach ($q as $data): ?>
+        <div class="row">
+            <div class="col-5">
+                <center><img src="../../assets/img/upload/<?= $data['foto'] ?>" alt="..." style="width: 75%;"></center>
+            </div>
+            <div class="col">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active text-center" aria-current="true">
+                        <?= $data['nama_aset'] ?>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        ID Aset
+                        <span class="float-right"><?= $data['id_aset'] ?></span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        Departemen
+                        <span class="float-right"><?= $data['departemen'] ?></span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        Tanggal Beli
+                        <span class="float-right"><?= date('d M Y', strtotime($data["tgl_beli"])) ?></span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        Tanggal Beli
+                        <span class="float-right"><?= $data['status'] ?></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
     </div>
 
     <script src="../../js/all.js"></script>

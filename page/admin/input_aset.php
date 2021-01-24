@@ -58,28 +58,28 @@
         <div class="col text-center my-4">
             <h3>Input Aset</h3>
         </div>
-        <form method="POST" action="../../assets/config/tambah_pegawai.php">
-        <div class="mb-3">
-                <label for="id" class="form-label">ID</label>
-                <input type="text" class="form-control bg-light" id="name" aria-describedby="emailHelp" autocomplete="off">
+        <form method="POST" action="../../assets/config/admin/tambah_aset.php" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="id_aset" class="form-label">ID Aset</label>
+                <input type="text" class="form-control bg-light" id="id_aset" name="id_aset" aria-describedby="emailHelp" autocomplete="off">
             </div>
             <div class="mb-3">
-                <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control bg-light" id="name" aria-describedby="emailHelp" autocomplete="off">
-            </div>
-            <div class="mb-3">
-                <label for="tanggal_beli" class="form-label">Tanggal Beli</label>
-                <input type="text" class="form-control bg-light" id="tanggal_beli" aria-describedby="emailHelp" autocomplete="off">
-            </div>
-            <div class="mb-3">
-                <label for="jumlah" class="form-label">Jumlah</label>
-                <input type="text" class="form-control bg-light" id="Jumlah" aria-describedby="emailHelp" autocomplete="off">
+                <label for="nama_aset" class="form-label">Nama</label>
+                <input type="text" class="form-control bg-light" id="nama_aset" name="nama_aset" aria-describedby="emailHelp" autocomplete="off">
             </div>
             <div class="mb-3">
                 <label for="departemen" class="form-label">Departemen</label>
-                <input type="text" class="form-control bg-light" id="Departemen" aria-describedby="emailHelp" autocomplete="off">
+                <input type="text" class="form-control bg-light" id="departemen" name="departemen" aria-describedby="emailHelp" autocomplete="off">
             </div>
-            <center><button type="submit" class="btn btn-primary">Tambah</button></center>
+            <div class="mb-3">
+                <label for="tgl_beli" class="form-label">Tanggal Beli</label>
+                <input type="date" class="form-control bg-light" id="tgl_beli" name="tgl_beli" aria-describedby="emailHelp" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Foto</label>
+                <input class="form-control bg-light" type="file" id="formFile" name="foto">
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Tambah</button>
         </form>
     </div>
 

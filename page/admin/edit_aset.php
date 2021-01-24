@@ -5,7 +5,9 @@
         header('Location: ../../index.html');
     }
 
-    $sql = "SELECT username, nama FROM user";
+    $id_aset = $_GET['id_aset'];
+
+    $sql = "SELECT * FROM aset WHERE id_aset = '$id_aset'";
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -57,34 +59,44 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="col text-center mt-4">
-            <h3>Pegawai</h3>
+    <div class="container" style="width: 30%">
+        <div class="col text-center my-4">
+            <h3>Edit Aset</h3>
         </div>
-        <a class="btn btn-success my-2" href="input_pegawai.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach ($q as $data): ?>
-                <tr>
-                    <th scope="row"><?= $i++ ?></th>
-                    <td><?= $data['username'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td>
-                        <a href="edit_pegawai.php?username=<?= $data['username'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/admin/hapus_pegawai.php?username=<?= $data['username'] ?>" onclick="return confirm('Hapus Username = <?= $data['username'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <form method="POST" action="../../assets/config/admin/update_aset.php" enctype="multipart/form-data">
+            <?php foreach ($q as $data): ?>
+            <div class="mb-3">
+                <label for="id_aset" class="form-label">ID Aset</label>
+                <input type="text" class="form-control bg-disabled" id="id_aset" name="id_aset" aria-describedby="emailHelp" autocomplete="off" value="<?= $data['id_aset'] ?>" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="nama_aset" class="form-label">Nama</label>
+                <input type="text" class="form-control bg-light" id="nama_aset" name="nama_aset" aria-describedby="emailHelp" autocomplete="off" value="<?= $data['nama_aset'] ?>">
+            </div>
+            <div class="mb-3">
+                <label for="departemen" class="form-label">Departemen</label>
+                <input type="text" class="form-control bg-light" id="departemen" name="departemen" aria-describedby="emailHelp" autocomplete="off" value="<?= $data['departemen'] ?>">
+            </div>
+            <div class="mb-3">
+                <label for="tgl_beli" class="form-label">Tanggal Beli</label>
+                <input type="date" class="form-control bg-light" id="tgl_beli" name="tgl_beli" aria-describedby="emailHelp" autocomplete="off" value="<?= $data['tgl_beli'] ?>">
+            </div>
+            <label for="tgl_beli" class="form-label">Status</label>
+            <select class="form-select" aria-label="Default select example" name="status">
+                <option  value="Available" <?php if($data['status']=='Available') echo 'selected'?>>Available</option>
+                <option  value="Unavailable" <?php if($data['status']=='Unavailable') echo 'selected'?>>Unavailable</option>
+            </select>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Foto</label>
+                <div class="row">
+                    <div class="col-2"><img src="../../assets/img/upload/<?= $data['foto'] ?>" width="50" class="rounded-circle"></div>
+                    <div class="col"><input class="form-control bg-light" type="file" id="formFile" name="foto"></div>
+                </div>
+                <input type="hidden" name="fotoLama" value="<?= $data['foto'] ?>">
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Tambah</button>
+            <?php endforeach; ?>
+        </form>
     </div>
 
     <script src="../../js/all.js"></script>

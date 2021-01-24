@@ -5,7 +5,7 @@
         header('Location: ../../index.html');
     }
 
-    $sql = "SELECT username, nama FROM user";
+    $sql = "SELECT * FROM aset ORDER BY nama_aset";
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -59,7 +59,7 @@
 
     <div class="container">
         <div class="col text-center mt-4">
-            <h3>Pegawai</h3>
+            <h3>Aset</h3>
         </div>
         <a class="btn btn-success my-2" href="input_aset.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
         <table class="table table-striped table-hover">
@@ -68,10 +68,9 @@
                 <th scope="col">#</th>
                 <th scope="col">ID</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Tanggal beli</th>
-                <th scope="col">Jumlah</th>
                 <th scope="col">Departemen</th>
-                <th scope="col">Keterangan</th>
+                <th scope="col">Tanggal Beli</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -79,18 +78,19 @@
                 <?php $i = 1; foreach ($q as $data): ?>
                 <tr>
                     <th scope="row"><?= $i++ ?></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?= $data['id_aset'] ?></td>
+                    <td><?= $data['nama_aset'] ?></td>
+                    <td><?= $data['departemen'] ?></td>
+                    <td><?= date('d M Y', strtotime($data["tgl_beli"])) ?></td>
+                    <td><?= $data['status'] ?></td>
                     <td>
-                        <a href="#"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="#"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
+                        <a href="gambar_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-images" style="font-size: 25px;" title="View Image"></i></a>
+                        <a href="edit_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
+                        <a href="../../assets/config/admin/hapus_aset.php?id_aset=<?= $data['id_aset'] ?>" onclick="return confirm('Hapus Aset = <?= $data['nama_aset'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
+                
             </tbody>
         </table>
     </div>

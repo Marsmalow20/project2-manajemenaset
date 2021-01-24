@@ -5,7 +5,9 @@
         header('Location: ../../index.html');
     }
 
-    $sql = "SELECT username, nama FROM user";
+    $username = $_GET['username'];
+
+    $sql = "SELECT username, nama FROM user WHERE username = '$username'";
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -57,34 +59,23 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="col text-center mt-4">
-            <h3>Pegawai</h3>
+    <div class="container" style="width: 30%">
+        <div class="col text-center my-4">
+            <h3>Edit Pegawai</h3>
         </div>
-        <a class="btn btn-success my-2" href="input_pegawai.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach ($q as $data): ?>
-                <tr>
-                    <th scope="row"><?= $i++ ?></th>
-                    <td><?= $data['username'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td>
-                        <a href="edit_pegawai.php?username=<?= $data['username'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/admin/hapus_pegawai.php?username=<?= $data['username'] ?>" onclick="return confirm('Hapus Username = <?= $data['username'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <form method="POST" action="../../assets/config/admin/update_pegawai.php">
+            <?php foreach ($q as $data): ?>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control bg-disabled" id="username" name="username" aria-describedby="emailHelp" autocomplete="off" value="<?= $data['username'] ?>" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control bg-light" id="name" name="nama" aria-describedby="emailHelp" autocomplete="off" value="<?= $data['nama'] ?>">
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Edit</button>
+            <?php endforeach; ?>
+        </form>
     </div>
 
     <script src="../../js/all.js"></script>
