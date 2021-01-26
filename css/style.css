@@ -49,7 +49,7 @@ label {
 #card-title {
 	font-family: "Raleway Thin", sans-serif;
 	letter-spacing: 4px;
-	padding-bottom: 23px;
+	padding-bottom: 15px;
 	padding-top: 13px;
 	text-align: center;
 }
@@ -72,7 +72,7 @@ label {
 	font-family: "Raleway SemiBold", sans-serif;
 	height: 42.3px;
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 30px;
 	transition: 0.25s;
 	width: 153px;
 }

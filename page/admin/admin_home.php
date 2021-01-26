@@ -4,6 +4,14 @@
     if (!isset($_SESSION['login'])) {
         header('Location: ../../index.html');
     }
+
+    $sql = "SELECT COUNT(*) FROM peminjaman WHERE status = 0";
+    $q = mysqli_query($con, $sql);
+    $result = mysqli_fetch_assoc($q);
+
+    $sql2 = "SELECT COUNT(*) FROM `pengembalian` WHERE status_k = 0";
+    $q2 = mysqli_query($con, $sql2);
+    $result2 = mysqli_fetch_assoc($q2);
 ?>
 
 <!DOCTYPE html>
@@ -97,17 +105,23 @@
                         <div class="card">
                             <img src="../../assets/img/Picture4.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <p class="card-text">Peminjaman</p>
+                                <p class="card-text">
+                                    Peminjaman
+                                    <?= ($result['COUNT(*)'] > 0) ? "<span class='badge rounded-pill bg-danger'>" . $result['COUNT(*)'] . "</span>" : "" ?>
+                                </p>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="assets/dosen.php" class="btn">
+                    <a href="list_pengembalian.php" class="btn">
                         <div class="card">
                             <img src="../../assets/img/Picture5.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <p class="card-text">Pengembalian</p>
+                            <p class="card-text">
+                                    Pengembalian
+                                    <?= ($result2['COUNT(*)'] > 0) ? "<span class='badge rounded-pill bg-danger'>" . $result2['COUNT(*)'] . "</span>" : "" ?>
+                                </p>
                             </div>
                         </div>
                     </a>

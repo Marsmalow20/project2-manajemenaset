@@ -87,7 +87,7 @@
                         <span class="float-right"><?= date('d M Y', strtotime($data["tgl_beli"])) ?></span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action">
-                        Tanggal Beli
+                        Status
                         <span class="float-right"><?= $data['status'] ?></span>
                     </a>
                 </div>

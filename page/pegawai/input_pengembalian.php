@@ -5,10 +5,21 @@
         header('Location: ../../index.html');
     }
 
-    $username = $_SESSION['login'];
+    $id_pinjam = $_GET['id_pinjam'];
 
-    $sql = "SELECT peminjaman.id_pinjam, user.nama, aset.nama_aset, peminjaman.tgl_pinjam, peminjaman.status, peminjaman.keterangan FROM peminjaman INNER JOIN user ON peminjaman.username = user.username INNER JOIN aset ON peminjaman.id_aset = aset.id_aset WHERE user.username = '$username' ORDER BY peminjaman.tgl_pinjam DESC";
+    $sql = "SELECT peminjaman.id_pinjam, user.nama, aset.id_aset, aset.nama_aset, aset.foto, peminjaman.tgl_pinjam, peminjaman.status, peminjaman.keterangan FROM peminjaman INNER JOIN user ON peminjaman.username = user.username INNER JOIN aset ON peminjaman.id_aset = aset.id_aset WHERE peminjaman.id_pinjam = '$id_pinjam'";
     $q = mysqli_query($con, $sql);
+
+    $result = mysqli_fetch_assoc($q);
+
+    if ($result['status'] == 0) {
+        echo "
+            <script>
+                alert('Tidak dapat melakukan Konfirmasi Pengembalian karena peminjaman belum di-Konfirmasi oleh admin!');
+                window.location.href = 'list_pengembalian.php';
+            </script>
+        ";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -59,52 +70,40 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="col text-center mt-4">
-            <h3>Record Peminjaman</h3>
+    <div class="container" style="width: 50%">
+        <div class="col text-center my-4">
+            <h3>Konfirmasi Pengembalian</h3>
         </div>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">ID</th>
-                <th scope="col">Nama Peminjam</th>
-                <th scope="col">Nama Aset</th>
-                <th scope="col">Tanggal Pinjam</th>
-                <th scope="col">Keterangan</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $i = 1;
-                    foreach ($q as $data):
-                        $status = "";
-                        if ($data['status'] == 1) {
-                            $status = "<i class='fas fa-check-circle'></i>";
-                        } else {
-                            $status = "<i class='fas fa-times-circle'></i>";
-                        }
-                ?>
-                <tr>
-                    <th scope="row"><?= $i++ ?></th>
-                    <td><?= $data['id_pinjam'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td><?= $data['nama_aset'] ?></td>
-                    <td><?= date('d M Y', strtotime($data["tgl_pinjam"])) ?></td>
-                    <td><?= $data['keterangan'] ?></td>
-                    <td class="<?= ($data['status'] == 1) ? "text-success" : "text-secondary" ?>" title="<?= ($data['status'] == 1) ? "Ter-Verifikasi" : "Belum Ter-Verifikasi" ?>">
-                        <?= $status ?>
-                    </td>
-                    <td>
-                        <a href="edit_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/pegawai/hapus_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>" onclick="return confirm('Hapus Peminjaman > <?= $data['nama_aset'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <div class="row">
+            <?php foreach ($q as $data) : ?>
+            <div class="col-5">
+                <div class="card" style="width: 16rem;">
+                    <img src="../../assets/img/upload/<?= $data['foto'] ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $data['nama_aset'] . " - " . $data['id_aset'] ?></h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><?= $data['nama'] ?></li>
+                        <li class="list-group-item"><?= date('d M Y', strtotime($data["tgl_pinjam"])) ?></li>
+                        <li class="list-group-item"><?= $data['keterangan'] ?></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <form method="POST" action="../../assets/config/pegawai/tambah_pengembalian.php" enctype="multipart/form-data">
+                <div class="mb-3">
+                        <label for="id_pinjam" class="form-label">ID Peminjaman</label>
+                        <input type="text" class="form-control bg-disabled" id="id_pinjam" name="id_pinjam" aria-describedby="emailHelp" value="<?= $data['id_pinjam'] ?>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tgl_pengembalian" class="form-label">Tanggal Pengembalian</label>
+                        <input type="date" class="form-control bg-light" id="tgl_pengembalian" name="tgl_pengembalian" aria-describedby="emailHelp">
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right">Konfirmasi</button>
+                </form>
+            </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 
     <script src="../../js/all.js"></script>

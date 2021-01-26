@@ -61,7 +61,6 @@
         <div class="col text-center mt-4">
             <h3>Peminjaman</h3>
         </div>
-        <a class="btn btn-success my-2" href="input_aset.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -97,9 +96,8 @@
                         <?= $status ?>
                     </td>
                     <td>
-                        <a href="gambar_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-images" style="font-size: 25px;" title="View Image"></i></a>
-                        <a href="edit_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/admin/hapus_aset.php?id_aset=<?= $data['id_aset'] ?>" onclick="return confirm('Hapus Aset = <?= $data['nama_aset'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
+                        <a href="../../assets/config/admin/verifikasi_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>" onclick="return confirm('Verifikasi Peminjaman <?= $data['nama_aset'] ?>, oleh <?= $data['nama'] ?>? Tindakan ini tidak dapat dibatalkan!')"><i class="fa fa-check-square" style="font-size: 25px;" title="Verifikasi"></i></a>
+                        <a href="../../assets/config/admin/hapus_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>" onclick="return confirm('Hapus Peminjaman <?= $data['nama_aset'] ?>, oleh <?= $data['nama'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

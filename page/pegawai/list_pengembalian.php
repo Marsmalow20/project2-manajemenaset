@@ -7,8 +7,11 @@
 
     $username = $_SESSION['login'];
 
-    $sql = "SELECT peminjaman.id_pinjam, user.nama, aset.nama_aset, peminjaman.tgl_pinjam, peminjaman.status, peminjaman.keterangan FROM peminjaman INNER JOIN user ON peminjaman.username = user.username INNER JOIN aset ON peminjaman.id_aset = aset.id_aset WHERE user.username = '$username' ORDER BY peminjaman.tgl_pinjam DESC";
+    $sql = "SELECT peminjaman.id_pinjam, user.nama, aset.nama_aset, peminjaman.tgl_pinjam, peminjaman.status, peminjaman.keterangan FROM peminjaman INNER JOIN user ON peminjaman.username = user.username INNER JOIN aset ON peminjaman.id_aset = aset.id_aset NATURAL LEFT JOIN pengembalian WHERE pengembalian.id_pinjam IS NULL AND user.username = '$username' ORDER BY peminjaman.tgl_pinjam DESC";
     $q = mysqli_query($con, $sql);
+    
+    $sql2 = "SELECT peminjaman.id_pinjam, user.nama, aset.nama_aset, peminjaman.tgl_pinjam, peminjaman.keterangan, pengembalian.tgl_pengembalian FROM peminjaman INNER JOIN user ON peminjaman.username = user.username INNER JOIN aset ON peminjaman.id_aset = aset.id_aset NATURAL LEFT JOIN pengembalian WHERE pengembalian.id_pinjam IS NOT NULL AND user.username = '$username' ORDER BY peminjaman.tgl_pinjam DESC";
+    $q2 = mysqli_query($con, $sql2);
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +64,7 @@
 
     <div class="container">
         <div class="col text-center mt-4">
-            <h3>Record Peminjaman</h3>
+            <h3>Pengembalian</h3>
         </div>
         <table class="table table-striped table-hover">
             <thead>
@@ -98,9 +101,43 @@
                         <?= $status ?>
                     </td>
                     <td>
-                        <a href="edit_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/pegawai/hapus_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>" onclick="return confirm('Hapus Peminjaman > <?= $data['nama_aset'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
+                        <a href="input_pengembalian.php?id_pinjam=<?= $data['id_pinjam'] ?>"><i class="fa fa-exchange-alt" style="font-size: 25px;" title="Konfirmasi Pengembalian"></i></a>
                     </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container mt-5">
+        <div class="col text-center mt-4">
+            <h3>Record Pengembalian</h3>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nama Peminjam</th>
+                <th scope="col">Nama Aset</th>
+                <th scope="col">Tanggal Pinjam</th>
+                <th scope="col">Tanggal Kembali</th>
+                <th scope="col">Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $i = 1;
+                    foreach ($q2 as $data2):
+                ?>
+                <tr>
+                    <th scope="row"><?= $i++ ?></th>
+                    <td><?= $data2['id_pinjam'] ?></td>
+                    <td><?= $data2['nama'] ?></td>
+                    <td><?= $data2['nama_aset'] ?></td>
+                    <td><?= date('d M Y', strtotime($data2["tgl_pinjam"])) ?></td>
+                    <td><?= date('d M Y', strtotime($data2["tgl_pengembalian"])) ?></td>
+                    <td><?= $data2['keterangan'] ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
