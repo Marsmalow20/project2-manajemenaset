@@ -93,7 +93,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="" class="btn">
+                    <a href="list_peminjaman.php" class="btn">
                         <div class="card">
                             <img src="../../assets/img/Picture4.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
