@@ -5,7 +5,13 @@
         header('Location: ../../index.html');
     }
 
-    $sql = "SELECT * FROM aset ORDER BY nama_aset";
+    $username = $_SESSION['login'];
+
+    $sql = "SELECT pengembalian.id_pengembalian, user.nama, aset.id_aset, aset.nama_aset, peminjaman.tgl_pinjam, peminjaman.keterangan, pengembalian.tgl_pengembalian, pengembalian.status_k AS status_pengembalian 
+            FROM peminjaman INNER JOIN user ON peminjaman.username = user.username 
+            INNER JOIN aset ON peminjaman.id_aset = aset.id_aset 
+            INNER JOIN pengembalian ON peminjaman.id_pinjam = pengembalian.id_pinjam  
+            ORDER BY pengembalian.id_pengembalian DESC";
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -19,7 +25,7 @@
     <link rel="stylesheet" href="../../css/bootstrap-grid.css">
     <link rel="stylesheet" href="../../css/bootstrap-reboot.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Admin Home</title>
+    <title>Eksekutif</title>
 </head>
 
 <body>
@@ -59,38 +65,43 @@
 
     <div class="container">
         <div class="col text-center mt-4">
-            <h3>Aset</h3>
+            <h3>Laporan Data Peminjaman</h3>
         </div>
-        <a class="btn btn-success my-2" href="input_aset.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">ID</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Departemen</th>
-                <th scope="col">Tanggal Beli</th>
+                <th scope="col">Nama Peminjam</th>
+                <th scope="col">Nama Aset</th>
+                <th scope="col">Tanggal Pinjam</th>
+                <th scope="col">Tanggal Kembali</th>
                 <th scope="col">Status</th>
-                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php $i = 1; foreach ($q as $data): ?>
+                <?php
+                    $i = 1;
+                    foreach ($q as $data):
+                        $status = "";
+                        if ($data['status_pengembalian'] == 1) {
+                            $status = "<i class='fas fa-check-circle'></i>";
+                        } else {
+                            $status = "<i class='fas fa-times-circle'></i>";
+                        }
+                ?>
                 <tr>
                     <th scope="row"><?= $i++ ?></th>
-                    <td><?= $data['id_aset'] ?></td>
+                    <td><?= $data['id_pengembalian'] ?></td>
+                    <td><?= $data['nama'] ?></td>
                     <td><?= $data['nama_aset'] ?></td>
-                    <td><?= $data['departemen'] ?></td>
-                    <td><?= date('d M Y', strtotime($data["tgl_beli"])) ?></td>
-                    <td><?= $data['status'] ?></td>
-                    <td>
-                        <a href="gambar_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-images" style="font-size: 25px;" title="View Image"></i></a>
-                        <a href="edit_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/admin/hapus_aset.php?id_aset=<?= $data['id_aset'] ?>" onclick="return confirm('Hapus Aset = <?= $data['nama_aset'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
+                    <td><?= date('d M Y', strtotime($data["tgl_pinjam"])) ?></td>
+                    <td><?= date('d M Y', strtotime($data["tgl_pengembalian"])) ?></td>
+                    <td class="<?= ($data['status_pengembalian'] == 1) ? "text-success" : "text-secondary" ?>" title="<?= ($data['status_pengembalian'] == 1) ? "Ter-Verifikasi" : "Belum Ter-Verifikasi" ?>">
+                        <?= $status ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
-                
             </tbody>
         </table>
     </div>

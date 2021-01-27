@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Application</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -73,27 +73,17 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a href="assets/dosen.php" class="btn">
+                    <a href="list_aset.php" class="btn">
                         <div class="card">
                             <img src="../../assets/img/Picture5.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <p class="card-text">Peminjaman Aset</p>
+                                <p class="card-text">Aset</p>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="assets/dosen_listmhs.php" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture6.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <p class="card-text">Pengembalian Aset</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="assets/dosen_listmhs.php" class="btn">
+                    <a href="list_pengembalian.php" class="btn">
                         <div class="card">
                             <img src="../../assets/img/Picture6.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -101,7 +91,7 @@
                             </div>
                         </div>
                     </a>
-                </div>                
+                </div>               
             </div>
         </center>
     </div>

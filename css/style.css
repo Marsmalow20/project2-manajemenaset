@@ -9,7 +9,7 @@ a {
 }
 
 body {
-	background: -webkit-linear-gradient(bottom, #2dbd6e, #a6f77b);
+	background: -webkit-linear-gradient(bottom, #2193b0, #6dd5ed);
 	background-repeat: no-repeat;
 	height: 100vh;
 	display: flex;
@@ -22,14 +22,6 @@ h2 {
 label {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	font-size: 11pt;
-}
-
-#forgot-pass {
-	color: #2dbd6e;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	font-size: 10pt;
-	margin-top: 3px;
-	text-align: right;
 }
 
 #card {
@@ -54,21 +46,13 @@ label {
 	text-align: center;
 }
 
-#signup {
-	color: #2dbd6e;
-	font-family: "Raleway", sans-serif;
-	font-size: 10pt;
-	margin-top: 16px;
-	text-align: center;
-}
-
 #submit-btn {
-	background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
+	background: -webkit-linear-gradient(right, #6dd5ed, #2193b0);
 	border: none;
 	border-radius: 21px;
-	box-shadow: 0px 1px 8px #24c64f;
+	box-shadow: 0px 1px 8px #27b1d3;
 	cursor: pointer;
-	color: white;
+	color: #FFF;
 	font-family: "Raleway SemiBold", sans-serif;
 	height: 42.3px;
 	margin: 0 auto;
@@ -78,7 +62,7 @@ label {
 }
 
 #submit-btn:hover {
-	box-shadow: 0px 1px 18px #24c64f;
+	box-shadow: 0px 1px 18px #27b1d3;
 }
 
 .form {
@@ -88,7 +72,7 @@ label {
 }
 
 .form-border {
-	background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+	background: -webkit-linear-gradient(right, #6dd5ed, #0381a0);
 	height: 1px;
 	width: 100%;
 }

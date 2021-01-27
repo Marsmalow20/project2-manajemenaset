@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../../css/bootstrap-grid.css">
     <link rel="stylesheet" href="../../css/bootstrap-reboot.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Admin Home</title>
+    <title>Eksekutif</title>
 </head>
 
 <body>
@@ -61,7 +61,6 @@
         <div class="col text-center mt-4">
             <h3>Aset</h3>
         </div>
-        <a class="btn btn-success my-2" href="input_aset.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -71,7 +70,6 @@
                 <th scope="col">Departemen</th>
                 <th scope="col">Tanggal Beli</th>
                 <th scope="col">Status</th>
-                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,11 +81,6 @@
                     <td><?= $data['departemen'] ?></td>
                     <td><?= date('d M Y', strtotime($data["tgl_beli"])) ?></td>
                     <td><?= $data['status'] ?></td>
-                    <td>
-                        <a href="gambar_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-images" style="font-size: 25px;" title="View Image"></i></a>
-                        <a href="edit_aset.php?id_aset=<?= $data['id_aset'] ?>"><i class="fa fa-edit" style="font-size: 25px;" title="Edit"></i></a>
-                        <a href="../../assets/config/admin/hapus_aset.php?id_aset=<?= $data['id_aset'] ?>" onclick="return confirm('Hapus Aset = <?= $data['nama_aset'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
-                    </td>
                 </tr>
                 <?php endforeach; ?>
                 

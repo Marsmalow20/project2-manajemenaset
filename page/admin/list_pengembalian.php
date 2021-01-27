@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Application</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -102,7 +102,7 @@
                         <?= $status ?>
                     </td>
                     <td>
-                    <a href="../../assets/config/admin/verifikasi_pengembalian.php?id_pengembalian=<?= $data['id_pengembalian'] ?>&id_aset=<?= $data['id_aset'] ?>" onclick="return confirm('Verifikasi Pengembalian <?= $data['nama_aset'] ?>, oleh <?= $data['nama'] ?>? Tindakan ini tidak dapat dibatalkan!')"><i class="fa fa-check-square" style="font-size: 25px;" title="Verifikasi"></i></a>
+                        <a href="../../assets/config/admin/verifikasi_pengembalian.php?id_pengembalian=<?= $data['id_pengembalian'] ?>&id_aset=<?= $data['id_aset'] ?>" onclick="return confirm('Verifikasi Pengembalian <?= $data['nama_aset'] ?>, oleh <?= $data['nama'] ?>? Tindakan ini tidak dapat dibatalkan!')"><i class="fa fa-check-square" style="font-size: 25px;" title="Verifikasi"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

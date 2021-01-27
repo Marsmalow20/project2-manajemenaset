@@ -10257,3 +10257,17 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.navbar-custom {
+  background-color: #78c3d6;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text,
+.navbar-custom .nav-link {
+  color: #446974;
+}
+
+.navbar-custom .nav-link.active {
+  color: #13333b;
+}
