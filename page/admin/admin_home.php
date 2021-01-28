@@ -42,8 +42,8 @@
                             <?= $_SESSION['login']; ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="edit_user.php">Edit Account</a></li>
+                            <li><a class="dropdown-item" href="edit_pass.php">Change Password</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="../../assets\config\logout.php">Logout <i class="fa fa-power-off" style="color: #cbc;"></i></a></li>
                         </ul>
@@ -52,10 +52,16 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="list_aset.php">Aset</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="list_pegawai.php">Pegawai</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="list_peminjaman.php">Peminjaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="list_pengembalian.php">Pengembalian</a>
                     </li>
                 </ul>
             </div>

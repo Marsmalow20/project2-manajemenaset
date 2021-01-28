@@ -5,7 +5,9 @@
         header('Location: ../../index.html');
     }
 
-    $sql = "SELECT * FROM aset ORDER BY nama_aset";
+    $username = $_SESSION['login'];
+
+    $sql = "SELECT * FROM user WHERE username = '$username'";
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -19,7 +21,7 @@
     <link rel="stylesheet" href="../../css/bootstrap-grid.css">
     <link rel="stylesheet" href="../../css/bootstrap-reboot.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Eksekutif</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -32,7 +34,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?= $_SESSION['login']; ?>
                         </a>
@@ -47,7 +49,7 @@
                         <a class="nav-link" aria-current="page" href="pemimpin_home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="list_aset.php">Aset</a>
+                        <a class="nav-link" href="list_aset.php">Aset</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="list_pengembalian.php">Laporan</a>
@@ -57,35 +59,24 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="col text-center mt-4">
-            <h3>Aset</h3>
+    <div class="container" style="width: 30%">
+        <div class="col text-center my-4">
+            <h3>Edit Akun</h3>
         </div>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">ID</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Departemen</th>
-                <th scope="col">Tanggal Beli</th>
-                <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1; foreach ($q as $data): ?>
-                <tr>
-                    <th scope="row"><?= $i++ ?></th>
-                    <td><?= $data['id_aset'] ?></td>
-                    <td><?= $data['nama_aset'] ?></td>
-                    <td><?= $data['departemen'] ?></td>
-                    <td><?= date('d M Y', strtotime($data["tgl_beli"])) ?></td>
-                    <td><?= $data['status'] ?></td>
-                </tr>
-                <?php endforeach; ?>
-                
-            </tbody>
-        </table>
+        <form method="POST" action="../../assets/config/pemimpin/update_user.php">
+            <?php foreach($q as $data) : ?>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control bg-disabled" id="username" name="username" value="<?= $data['username'] ?>" aria-describedby="emailHelp" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control bg-light" id="nama" name="nama" value="<?= $data['nama'] ?>" aria-describedby="emailHelp" autocomplete="off" required>
+            </div>
+            <a href="edit_pass.php">Ubah Password</a>
+            <button type="submit" class="btn btn-primary float-right">Save</button>
+            <?php endforeach; ?>
+        </form>
     </div>
 
     <script src="../../js/all.js"></script>

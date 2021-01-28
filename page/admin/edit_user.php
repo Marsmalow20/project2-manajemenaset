@@ -5,7 +5,9 @@
         header('Location: ../../index.html');
     }
 
-    $sql = "SELECT peminjaman.id_pinjam, user.nama, aset.nama_aset, peminjaman.tgl_pinjam, peminjaman.status, peminjaman.keterangan FROM peminjaman INNER JOIN user ON peminjaman.username = user.username INNER JOIN aset ON peminjaman.id_aset = aset.id_aset ORDER BY peminjaman.tgl_pinjam DESC";
+    $username = $_SESSION['login'];
+
+    $sql = "SELECT * FROM user WHERE username = '$username'";
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -15,11 +17,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css\bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/bootstrap-grid.css">
     <link rel="stylesheet" href="../../css/bootstrap-reboot.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Admin Home</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -33,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?= $_SESSION['login']; ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -53,7 +55,7 @@
                         <a class="nav-link" href="list_pegawai.php">Pegawai</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="list_peminjaman.php">Peminjaman</a>
+                        <a class="nav-link" href="list_peminjaman.php">Peminjaman</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="list_pengembalian.php">Pengembalian</a>
@@ -63,52 +65,24 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="col text-center mt-4">
-            <h3>Peminjaman</h3>
+    <div class="container" style="width: 30%">
+        <div class="col text-center my-4">
+            <h3>Edit Akun</h3>
         </div>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">ID</th>
-                <th scope="col">Nama Peminjam</th>
-                <th scope="col">Nama Aset</th>
-                <th scope="col">Tanggal Pinjam</th>
-                <th scope="col">Keterangan</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $i = 1;
-                    foreach ($q as $data):
-                        $status = "";
-                        if ($data['status'] == 1) {
-                            $status = "<i class='fas fa-check-circle'></i>";
-                        } else {
-                            $status = "<i class='fas fa-times-circle'></i>";
-                        }
-                ?>
-                <tr>
-                    <th scope="row"><?= $i++ ?></th>
-                    <td><?= $data['id_pinjam'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td><?= $data['nama_aset'] ?></td>
-                    <td><?= date('d M Y', strtotime($data["tgl_pinjam"])) ?></td>
-                    <td><?= $data['keterangan'] ?></td>
-                    <td class="<?= ($data['status'] == 1) ? "text-success" : "text-secondary" ?>" title="<?= ($data['status'] == 1) ? "Ter-Verifikasi" : "Belum Ter-Verifikasi" ?>">
-                        <?= $status ?>
-                    </td>
-                    <td>
-                        <a href="../../assets/config/admin/verifikasi_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>" onclick="return confirm('Verifikasi Peminjaman <?= $data['nama_aset'] ?>, oleh <?= $data['nama'] ?>? Tindakan ini tidak dapat dibatalkan!')"><i class="fa fa-check-square" style="font-size: 25px;" title="Verifikasi"></i></a>
-                        <a href="../../assets/config/admin/hapus_peminjaman.php?id_pinjam=<?= $data['id_pinjam'] ?>" onclick="return confirm('Hapus Peminjaman <?= $data['nama_aset'] ?>, oleh <?= $data['nama'] ?> ?')"><i class="fa fa-trash" style="font-size: 25px;" title="Delete"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <form method="POST" action="../../assets/config/admin/update_user.php">
+            <?php foreach($q as $data) : ?>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control bg-disabled" id="username" name="username" value="<?= $data['username'] ?>" aria-describedby="emailHelp" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control bg-light" id="nama" name="nama" value="<?= $data['nama'] ?>" aria-describedby="emailHelp" autocomplete="off" required>
+            </div>
+            <a href="edit_pass.php">Ubah Password</a>
+            <button type="submit" class="btn btn-primary float-right">Save</button>
+            <?php endforeach; ?>
+        </form>
     </div>
 
     <script src="../../js/all.js"></script>
