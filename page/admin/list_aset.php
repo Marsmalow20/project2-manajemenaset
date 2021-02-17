@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Application</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -90,6 +90,7 @@
                 <th scope="col">#</th>
                 <th scope="col">ID</th>
                 <th scope="col">Nama</th>
+                <th scope="col">Kategori</th>
                 <th scope="col">Departemen</th>
                 <th scope="col">Tanggal Beli</th>
                 <th scope="col">Status</th>
