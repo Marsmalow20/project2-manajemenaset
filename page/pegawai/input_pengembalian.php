@@ -97,7 +97,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl_pengembalian" class="form-label">Tanggal Pengembalian</label>
-                        <input type="date" class="form-control bg-light" id="tgl_pengembalian" name="tgl_pengembalian" aria-describedby="emailHelp">
+                        <input type="date" class="form-control bg-light" id="tgl_pengembalian" name="tgl_pengembalian" aria-describedby="emailHelp" required>
                     </div>
                     <button type="submit" class="btn btn-primary float-right">Konfirmasi</button>
                 </form>

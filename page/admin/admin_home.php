@@ -78,8 +78,8 @@
             <div class="row">
                 <div class="col">
                     <a href="" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture4.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/home.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">Home</p>
                             </div>
@@ -88,8 +88,8 @@
                 </div>
                 <div class="col">
                     <a href="list_aset.php" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture5.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/aset.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">Aset</p>
                             </div>
@@ -98,8 +98,8 @@
                 </div>
                 <div class="col">
                     <a href="list_pegawai.php" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture6.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/pegawai.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">Pegawai</p>
                             </div>
@@ -108,8 +108,8 @@
                 </div>
                 <div class="col">
                     <a href="list_peminjaman.php" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture4.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/peminjaman.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">
                                     Peminjaman
@@ -121,8 +121,8 @@
                 </div>
                 <div class="col">
                     <a href="list_pengembalian.php" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture5.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/pengembalian.png" class="card-img-top" alt="...">
                             <div class="card-body">
                             <p class="card-text">
                                     Pengembalian

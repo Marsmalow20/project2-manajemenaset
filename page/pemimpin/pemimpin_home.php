@@ -64,8 +64,8 @@
             <div class="row mt-3">
                 <div class="col">
                     <a href="" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture4.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/home.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">Home</p>
                             </div>
@@ -74,8 +74,8 @@
                 </div>
                 <div class="col">
                     <a href="list_aset.php" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture5.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/aset.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">Aset</p>
                             </div>
@@ -84,8 +84,8 @@
                 </div>
                 <div class="col">
                     <a href="list_pengembalian.php" class="btn">
-                        <div class="card">
-                            <img src="../../assets/img/Picture6.jpg" class="card-img-top" alt="...">
+                        <div class="card border-0">
+                            <img src="../../assets/img/laporan.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">Laporan</p>
                             </div>

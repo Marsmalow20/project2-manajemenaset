@@ -6,6 +6,15 @@
     }
 
     $sql = "SELECT username, nama FROM user";
+
+    if (isset($_POST['keyword'])) {
+        $keyword = $_POST['keyword'];
+        $sql = "SELECT username, nama FROM user WHERE username LIKE '%$keyword%' OR nama LIKE '%$keyword%'";
+        if ($_POST['keyword'] == '') {
+            $sql = "SELECT username, nama FROM user";
+        }
+    }
+
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -67,7 +76,15 @@
         <div class="col text-center mt-4">
             <h3>Pegawai</h3>
         </div>
-        <a class="btn btn-success my-2" href="input_pegawai.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
+
+        <form action="" method="POST">
+            <a class="btn btn-success my-2" href="input_pegawai.php" role="button"><i class="fa fa-plus"></i>&nbspTambah</a>
+            <div class="input-group mb-3 w-25 float-right">
+                <input type="text" class="form-control" placeholder="Search..." name="keyword" aria-label="Search Box" aria-describedby="button-addon2" autocomplete="off">
+                <button class="btn btn-outline-primary" type="submit" name="search" id="button-addon2">Search</button>
+            </div>
+        </form>
+
         <table class="table table-striped table-hover">
             <thead>
                 <tr>

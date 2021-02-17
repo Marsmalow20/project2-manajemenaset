@@ -6,6 +6,15 @@
     }
 
     $sql = "SELECT * FROM aset ORDER BY nama_aset";
+
+    if (isset($_POST['keyword'])) {
+        $keyword = $_POST['keyword'];
+        $sql = "SELECT * FROM aset WHERE id_aset LIKE '%$keyword%' OR nama_aset LIKE '%$keyword%'";
+        if ($_POST['keyword'] == '') {
+            $sql = "SELECT * FROM aset ORDER BY nama_aset";
+        }
+    }
+
     $q = mysqli_query($con, $sql);
 ?>
 
@@ -61,6 +70,12 @@
         <div class="col text-center mt-4">
             <h3>Aset</h3>
         </div>
+        <form action="" method="POST">
+            <div class="input-group mb-3 w-25 float-right">
+                <input type="text" class="form-control" placeholder="Search..." name="keyword" aria-label="Search Box" aria-describedby="button-addon2" autocomplete="off">
+                <button class="btn btn-outline-primary" type="submit" name="search" id="button-addon2">Search</button>
+            </div>
+        </form>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
