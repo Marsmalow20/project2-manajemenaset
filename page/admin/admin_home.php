@@ -12,6 +12,8 @@
     $sql2 = "SELECT COUNT(*) FROM `pengembalian` WHERE status_k = 0";
     $q2 = mysqli_query($con, $sql2);
     $result2 = mysqli_fetch_assoc($q2);
+
+    //admin home
 ?>
 
 <!DOCTYPE html>
