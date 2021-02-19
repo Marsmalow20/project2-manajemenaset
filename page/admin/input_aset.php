@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Application</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -72,6 +72,17 @@
             <div class="mb-3">
                 <label for="nama_aset" class="form-label">Nama</label>
                 <input type="text" class="form-control bg-light" id="nama_aset" name="nama_aset" aria-describedby="emailHelp" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="nama_aset" class="form-label">Kategori</label>
+                <class="form-control bg-light" id="nama_aset" name="nama_aset" aria-describedby="emailHelp" autocomplete="off">
+                <br>
+                    <select name="kategori" id="" style="width: 355px; height: 40px; border-radius: 5px">
+                        <option>Kendaraan</option>
+                        <option>Hardware</option>
+                        <option>Accesories</option>
+                        <option>Property</option>
+                    </select>
             </div>
             <div class="mb-3">
                 <label for="departemen" class="form-label">Departemen</label>
